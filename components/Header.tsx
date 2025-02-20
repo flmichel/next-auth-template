@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import Register from "../register";
+import Register from "./register";
 
 export default function Header() {
   const { data: session } = useSession();

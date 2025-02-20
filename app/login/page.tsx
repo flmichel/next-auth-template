@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import FacebookIcon from "../icons/facebook.svg";
-import GoogleIcon from "../icons/google.svg";
+import FacebookIcon from "@/icons/facebook.svg";
+import GoogleIcon from "@/icons/google.svg";
 import Image from "next/image";
 
 export default function Login() {
