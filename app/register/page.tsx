@@ -1,23 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { RegistrationForm } from "@/components/RegistrationForm";
-import { EmailVerification } from "@/components/EmailVerification";
-
-export type UserData = {
-  name: string;
-  email: string;
-};
+import { RegistrationForm } from "@/components/user/RegistrationForm";
+import { EmailVerification } from "@/components/user/EmailVerification";
 
 export default function Register() {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
 
   return (
     <>
-      {!userData ? (
-        <RegistrationForm setUserData={setUserData} />
+      {!email ? (
+        <RegistrationForm setEmail={setEmail} />
       ) : (
-        <EmailVerification userData={userData} />
+        <EmailVerification email={email} />
       )}
     </>
   );

@@ -1,6 +1,6 @@
 // pages/index.tsx
 import Navbar from "@/components/Navbar";
-import TextBox from "@/components/TextBox";
+import TranslatorApp from "@/components/translation/TranslatorApp";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <Navbar />
       {/* Main Content */}
       <main className="flex justify-center items-center h-screen p-6">
-        <TextBox />
+        <TranslatorApp />
       </main>
     </div>
   );

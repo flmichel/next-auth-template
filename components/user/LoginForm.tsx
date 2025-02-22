@@ -1,12 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import FacebookIcon from "@/icons/facebook.svg";
 import GoogleIcon from "@/icons/google.svg";
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
-import { UserData } from "@/app/register/page";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -21,65 +21,52 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { PasswordInput } from "./PasswordInput";
-import { PASSWORD_POLICY } from "@/lib/config";
-import CenteredContainer from "./CenteredContainer";
+import CenteredContainer from "../CenteredContainer";
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
   email: z.string().email({
     message: "Invalid email address.",
   }),
-  password: z
-    .string()
-    .min(PASSWORD_POLICY.minLength, {
-      message: `Password must be at least ${PASSWORD_POLICY.minLength} characters.`,
-    })
-    .max(PASSWORD_POLICY.maxLength, {
-      message: `Password must be at most ${PASSWORD_POLICY.maxLength} characters.`,
-    }),
+  password: z.string().min(1, {
+    message: `Password is empty`,
+  }),
 });
 
-interface RegistrationFormProps {
-  setUserData: (userData: UserData) => void;
+interface LoginFormProps {
+  setEmail: (email: string) => void;
 }
 
 // Using function declaration
-export function RegistrationForm({ setUserData }: RegistrationFormProps) {
+export function LoginForm({ setEmail }: LoginFormProps) {
+  const router = useRouter();
   const [genericError, setGenericError] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await authClient.signUp.email(
+    await authClient.signIn.email(
       {
         email: values.email,
         password: values.password,
-        name: values.name,
       },
       {
         onRequest: () => {
-          setIsRegistering(true);
+          setIsLoggingIn(true);
         },
         onSuccess: () => {
-          setUserData({ name: values.name, email: values.email });
+          router.push("/");
         },
         onError: (ctx) => {
-          setIsRegistering(false);
-          if (ctx.error.code === "USER_ALREADY_EXISTS") {
-            form.setError("email", {
-              type: "manual",
-              message: "The is already an account using this email address",
-            });
+          setIsLoggingIn(false);
+          if (ctx.error.code === "EMAIL_NOT_VERIFIED") {
+            setEmail(values.email);
           } else {
             setGenericError(ctx.error.message);
           }
@@ -90,25 +77,12 @@ export function RegistrationForm({ setUserData }: RegistrationFormProps) {
 
   return (
     <CenteredContainer>
-      <h2 className="text-2xl font-bold mb-6 text-center">Create an account</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Log in</h2>
       {genericError && (
         <p className="text-red-500 text-sm mb-4">{genericError}</p>
       )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="email"
@@ -135,23 +109,20 @@ export function RegistrationForm({ setUserData }: RegistrationFormProps) {
               </FormItem>
             )}
           />
-          {genericError && (
-            <p className="text-red-500 text-sm mb-4">{genericError}</p>
-          )}
           <Button
             type="submit"
             className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition duration-300"
-            disabled={isRegistering}
+            disabled={isLoggingIn}
           >
-            {isRegistering ? "Registering..." : "Register"}
+            {isLoggingIn ? "Logging in..." : "Log in"}
           </Button>
         </form>
       </Form>
 
       <p className="text-center">
-        Already have an account?{" "}
-        <Link href="/login" className="text-blue-500 hover:underline">
-          Log in here
+        Don't have an account?{" "}
+        <Link href="/register" className="text-blue-500 hover:underline">
+          Register here
         </Link>
       </p>
 

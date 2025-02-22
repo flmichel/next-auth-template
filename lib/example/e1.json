@@ -1,0 +1,111 @@
+{
+    "original": "大阪府・堺市の農業機械メーカーの工場。",
+    "parts": [
+      {
+        "type": "constituent",
+        "original": "大阪府・堺市の農業機械メーカーの工場",
+        "translation": "Factory of an agricultural machinery maker in Osaka Prefecture and Sakai City",
+        "constituentType": "Subject",
+        "parts": [
+          {
+            "type": "constituent",
+            "original": "大阪府・堺市",
+            "translation": "Osaka Prefecture and Sakai City",
+            "constituentType": "NounPhrase",
+            "parts": [
+              {
+                "type"       : "noun"            ,
+                "word"       : "大阪府"             ,
+                "furigana"   : "おおさかふ"           ,
+                "translation": "Osaka Prefecture",
+                "category"   : "Place"
+              },
+              {
+                "type"       : "symbol",
+                "word"       : "・"     ,
+                "furigana"   : "・"     ,
+                "translation": "and"
+              },
+              {
+                "type"       : "noun"      ,
+                "word"       : "堺市"        ,
+                "furigana"   : "さかいし"      ,
+                "translation": "Sakai City",
+                "category"   : "Place"
+              }
+            ]
+          },
+          {
+            "type"        : "particle"     ,
+            "word"        : "の"            ,
+            "furigana"    : "の"            ,
+            "translation" : "of"           ,
+            "particleType": "shū-joshi"    ,
+            "usage"       : "Noun Modifier"
+          },
+          {
+            "type": "constituent",
+            "original": "農業機械メーカーの工場",
+            "translation": "factory of an agricultural machinery maker",
+            "constituentType": "NounPhrase",
+            "parts": [
+              {
+                "type": "constituent",
+                "original": "農業機械メーカー",
+                "translation": "agricultural machinery maker",
+                "constituentType": "NounPhrase",
+                "parts": [
+                  {
+                    "type"       : "noun"                  ,
+                    "word"       : "農業機械"                  ,
+                    "furigana"   : "のうぎょうきかい"              ,
+                    "translation": "agricultural machinery",
+                    "category"   : "Object"
+                  },
+                  {
+                    "type"       : "noun" ,
+                    "word"       : "メーカー" ,
+                    "furigana"   : "メーカー" ,
+                    "translation": "maker",
+                    "category"   : "Agent"
+                  }
+                ]
+              },
+              {
+                "type"       : "noun"                  ,
+                "word"       : "農業機械"                  ,
+                "furigana"   : "のうぎょうきかい"              ,
+                "translation": "agricultural machinery",
+                "category"   : "Object"
+              },
+              {
+                "type"       : "noun" ,
+                "word"       : "メーカー" ,
+                "furigana"   : "メーカー" ,
+                "translation": "maker",
+                "category"   : "Agent"
+              },
+              {
+                "type"        : "particle"     ,
+                "word"        : "の"            ,
+                "furigana"    : "の"            ,
+                "translation" : "of"           ,
+                "particleType": "shū-joshi"    ,
+                "usage"       : "Noun Modifier"
+              },
+              {
+                "type"       : "noun"   ,
+                "word"       : "工場"     ,
+                "furigana"   : "こうじょう"  ,
+                "translation": "factory",
+                "category"   : "Place"
+              }
+            ]
+          }
+        ]
+      },
+      {"type": "symbol", "word": "。", "furigana": "。", "translation": "."}
+    ],
+    "translation": "Factory of an agricultural machinery maker in Osaka Prefecture and Sakai City."
+  }
+  

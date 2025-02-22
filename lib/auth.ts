@@ -11,6 +11,7 @@ export const auth = betterAuth({
       maxPasswordLength: PASSWORD_POLICY.maxLength,
     },
     emailVerification: {
+      autoSignInAfterVerification: true,
       sendOnSignUp: true,
       sendVerificationEmail: async ( { user, url, token }, request) => {
         console.log("test")

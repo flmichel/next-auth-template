@@ -1,6 +1,3 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -10,7 +7,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import Link from "next/link";
+import { UserHandler } from "./user/User";
 
 export default function Navbar() {
   return (
@@ -40,16 +37,7 @@ export default function Navbar() {
             <a href="#contact" className="text-gray-700 hover:text-gray-900">
               Contact
             </a>
-            <div className="mt-auto flex flex-col space-y-4">
-              <Link href="/login">
-                <Button variant="outline" className="w-full">
-                  Log In
-                </Button>
-              </Link>
-              <Link href="/register">
-                <Button className="w-full">Sign Up</Button>
-              </Link>
-            </div>
+            <UserHandler />
           </SheetContent>
         </Sheet>
       </div>
@@ -68,13 +56,8 @@ export default function Navbar() {
       </div>
 
       {/* Auth Buttons for Desktop */}
-      <div className="hidden md:flex space-x-4">
-        <Link href="/login">
-          <Button variant="outline">Log In</Button>
-        </Link>
-        <Link href="/register">
-          <Button>Sign Up</Button>
-        </Link>
+      <div className="hidden md:flex">
+        <UserHandler />
       </div>
     </nav>
   );

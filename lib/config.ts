@@ -1,4 +1,4 @@
 export const PASSWORD_POLICY = {
-    minLength: 12,
+    minLength: 10,
     maxLength: 128,
 };

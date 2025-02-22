@@ -1,0 +1,500 @@
+{
+  "$ref": "#/definitions/Sentence",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Constituent": {
+      "additionalProperties": false,
+      "properties": {
+        "constituentType": {
+          "enum": [
+            "Subject",
+            "Object",
+            "Predicate",
+            "Complement",
+            "Modifier",
+            "Adverbial",
+            "Conjunction",
+            "Interjection",
+            "Vocative"
+          ],
+          "type": "string"
+        },
+        "original": {
+          "type": "string"
+        },
+        "parts": {
+          "items": {
+            "$ref": "#/definitions/Part"
+          },
+          "type": "array"
+        },
+        "translation": {
+          "type": "string"
+        },
+        "type": {
+          "const": "constituent",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "original",
+        "translation",
+        "constituentType",
+        "parts"
+      ],
+      "type": "object"
+    },
+    "Part": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Constituent"
+        },
+        {
+          "$ref": "#/definitions/Word"
+        }
+      ]
+    },
+    "Sentence": {
+      "additionalProperties": false,
+      "properties": {
+        "original": {
+          "type": "string"
+        },
+        "parts": {
+          "items": {
+            "$ref": "#/definitions/Part"
+          },
+          "type": "array"
+        },
+        "translation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "original",
+        "translation",
+        "parts"
+      ],
+      "type": "object"
+    },
+    "Word": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "furigana": {
+              "type": "string"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "noun",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "current_form": {
+              "type": "string"
+            },
+            "dictionary_form": {
+              "type": "string"
+            },
+            "emphasis": {
+              "type": "string"
+            },
+            "form_usage": {
+              "enum": [
+                "〜た (Past, Plain): Indicates a completed action in an informal context.",
+                "〜ない (Negative, Plain): Indicates a negative action in an informal context.",
+                "て Form: Connects verbs to indicate sequential actions or to form compound verbs.",
+                "て Form: Used to make requests when combined with 'ください' (kudasai).",
+                "て Form: Indicates permission or possibility when combined with 'もいい' (mo ii).",
+                "て Form: Expresses a reason or cause when combined with 'から' (kara).",
+                "て Form: Forms the conditional 'if' when combined with 'ば' (ba).",
+                "て Form: Indicates a suggestion or invitation when combined with 'か' (ka).",
+                "て Form: Forms the volitional 'let's' when combined with 'しよう' (shiyou).",
+                "〜ている (Continuous): Indicates an ongoing action or state.",
+                "〜ている (Continuous): Expresses a habitual action.",
+                "〜ている (Continuous): Describes a resultant state from a completed action.",
+                "〜そう (Looks Like): Indicates that something appears to be a certain way based on visual cues.",
+                "〜そう (Looks Like): Used with adjectives to express 'seems' or 'looks like'.",
+                "〜たい (Desire): Expresses a desire to do something.",
+                "〜たい (Desire): Used to indicate that the speaker wants to perform the action of the verb.",
+                "〜たがる (Wants to): Indicates that someone else wants to do something.",
+                "〜たがる (Wants to): Used to express the desires of others.",
+                "〜ながら (Simultaneous): Indicates that two actions are happening simultaneously.",
+                "〜ながら (Simultaneous): Used to express 'while' doing something.",
+                "〜なさい (Polite Command): A polite imperative form used to give commands or instructions.",
+                "〜なさい (Polite Command): Often used by superiors to subordinates.",
+                "Command Form: Direct imperative form used to give commands.",
+                "Command Form: Used in informal contexts to instruct someone to do something.",
+                "〜やすい (Easy To): Indicates that something is easy to do.",
+                "〜やすい (Easy To): Used to describe actions that are easy to perform.",
+                "〜にくい (Hard To): Indicates that something is hard to do.",
+                "〜にくい (Hard To): Used to describe actions that are difficult to perform.",
+                "〜させる (Causative): Indicates that someone is made to do something.",
+                "〜させる (Causative): Used to express causation, making someone perform an action.",
+                "〜ば (Conditional): Indicates a conditional 'if' statement.",
+                "〜ば (Conditional): Used to express hypothetical situations or conditions.",
+                "〜れる (Potential): Indicates the potential or ability to do something.",
+                "〜れる (Potential): Used to express that something can be done.",
+                "〜られる (Passive): Indicates that the subject is the recipient of an action.",
+                "〜られる (Passive): Used to express passive voice, where the subject is acted upon.",
+                "〜よう (Volitional): Indicates intention or suggestion, similar to 'let's'.",
+                "〜よう (Volitional): Used to express a will or desire to do something."
+              ],
+              "type": "string"
+            },
+            "furigana": {
+              "type": "string"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "verb",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "current_form",
+            "dictionary_form",
+            "form_usage",
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "adjective",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "adverb",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "particleType": {
+              "enum": [
+                "kaku-joshi",
+                "heiritsu-joshi",
+                "shū-joshi",
+                "kantō-joshi",
+                "fuku-joshi",
+                "kakari-joshi",
+                "setsuzoku-joshi",
+                "juntai-joshi"
+              ],
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "particle",
+              "type": "string"
+            },
+            "usage": {
+              "enum": [
+                "が: Subject Marker",
+                "が: Emphasis Marker",
+                "の: Noun Modifier",
+                "の: Possessive Marker",
+                "の: Nominalizer",
+                "の: Explanatory Particle",
+                "を: Direct Object Marker",
+                "を: Place of Action Marker",
+                "に: Direction Marker",
+                "に: Time Marker",
+                "に: Purpose Marker",
+                "へ: Direction Marker",
+                "と: Quotation Marker",
+                "と: With Marker",
+                "と: Conditional Marker",
+                "で: Location Marker",
+                "で: Means Marker",
+                "で: Reason Marker",
+                "から: Starting Point Marker",
+                "から: Reason Marker",
+                "より: Comparison Marker",
+                "より: Starting Point Marker",
+                "か: Question Marker",
+                "か: Or Marker",
+                "や: Listing Marker",
+                "なり: Listing Marker",
+                "だの: Listing Marker",
+                "な: Adjective Ending",
+                "な: Explanatory Particle",
+                "わ: Sentence Ending Particle",
+                "とも: With Marker",
+                "とも: Even Marker",
+                "かしら: Question Marker",
+                "さ: Sentence Ending Particle",
+                "よ: Sentence Ending Particle",
+                "ね: Sentence Ending Particle",
+                "ばかり: Only Marker",
+                "ばかり: Just Marker",
+                "まで: Until Marker",
+                "だけ: Only Marker",
+                "ほど: Extent Marker",
+                "くらい: Extent Marker",
+                "など: Etcetera Marker",
+                "は: Topic Marker",
+                "は: Contrast Marker",
+                "も: Also Marker",
+                "も: Even Marker",
+                "こそ: Emphasis Marker",
+                "でも: Even Marker",
+                "しか: Only Marker",
+                "さえ: Even Marker",
+                "だに: Even Marker",
+                "ば: Conditional Marker",
+                "て: Te-form Connector",
+                "のに: Despite Marker",
+                "ので: Because Marker",
+                "ところが: However Marker",
+                "けれども: However Marker",
+                "くせに: Despite Marker"
+              ],
+              "type": "string"
+            },
+            "word": {
+              "enum": [
+                "が",
+                "の",
+                "を",
+                "に",
+                "へ",
+                "と",
+                "で",
+                "から",
+                "より",
+                "か",
+                "や",
+                "なり",
+                "だの",
+                "な",
+                "わ",
+                "とも",
+                "かしら",
+                "さ",
+                "よ",
+                "ね",
+                "ばかり",
+                "まで",
+                "だけ",
+                "ほど",
+                "くらい",
+                "など",
+                "は",
+                "も",
+                "こそ",
+                "でも",
+                "しか",
+                "さえ",
+                "だに",
+                "ば",
+                "て",
+                "のに",
+                "ので",
+                "ところが",
+                "けれども",
+                "くせに"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "particleType",
+            "translation",
+            "type",
+            "usage",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "conjunction",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "symbol",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "filler",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "furigana": {
+              "type": "string"
+            },
+            "translation": {
+              "type": "string"
+            },
+            "type": {
+              "const": "other",
+              "type": "string"
+            },
+            "word": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "furigana",
+            "translation",
+            "type",
+            "word"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  }
+}
